@@ -1,0 +1,15 @@
+[Unit]
+Description=Onkyo RS-232 to eISCP bridge (exposes serial AVR on TCP/UDP 60128)
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/onkyo-bridge/onkyo_serial_bridge.py \
+    --device /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0 \
+    --baud 9600 \
+    --model TX-RZ800
+Restart=always
+RestartSec=3
+SyslogIdentifier=onkyo-bridge
+
+[Install]
+WantedBy=default.target

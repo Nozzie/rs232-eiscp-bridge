@@ -1,0 +1,13 @@
+# Test-only virtualenv
+.venv/
+__pycache__/
+*.pyc
+
+# Private keys generated for deployment to the bridge host
+.ssh/
+
+# Scratch space for upstream source read while building the bridge
+research/
+
+# Scratch tree used by the installer dry-run test
+.test-install/

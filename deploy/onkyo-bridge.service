@@ -1,0 +1,37 @@
+[Unit]
+Description=Onkyo RS-232 to eISCP bridge (exposes serial AVR on TCP/UDP 60128)
+Documentation=file:/opt/onkyo-bridge/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/onkyo-bridge
+
+# NOTE: do NOT add PrivateDevices=yes to this unit - the bridge needs the
+# serial device node (/dev/ttyUSB* or /dev/serial/by-id/...).
+ExecStart=/usr/bin/python3 /opt/onkyo-bridge/onkyo_serial_bridge.py \
+    --device=${ONKYO_DEVICE} \
+    --baud=${ONKYO_BAUD} \
+    --model=${ONKYO_MODEL} \
+    --identifier=${ONKYO_IDENTIFIER}
+
+# Needs access to the serial device; "dialout" owns it on Debian/Ubuntu.
+User=onkyo-bridge
+Group=dialout
+
+Restart=always
+RestartSec=3
+
+# Modest hardening. Deliberately keeps device access.
+NoNewPrivileges=yes
+ProtectSystem=full
+ProtectHome=yes
+PrivateTmp=yes
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=onkyo-bridge
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+# Defaults for the onkyo-bridge service.
+# Edit this file, then: sudo systemctl restart onkyo-bridge
+
+# Serial device. Strongly prefer a /dev/serial/by-id/... path over /dev/ttyUSB0:
+# it stays stable across reboots and replugs, whereas ttyUSBn can move.
+# List candidates with:  ls -l /dev/serial/by-id/
+# Globs are supported, e.g. /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_*-if00-port0
+ONKYO_DEVICE=/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_*-if00-port0
+
+ONKYO_BAUD=9600
+
+# Model name advertised during discovery. If the receiver answers the ECN
+# query, the real model name is learned and used instead.
+ONKYO_MODEL=TX-RZ800
+
+# Up to 12 characters, advertised as the discovery identifier. Leave this as
+# the MAC of the host running the bridge; it only needs to be unique if you
+# run several bridges.
+ONKYO_IDENTIFIER=AABBCCDDEEFF
