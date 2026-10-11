@@ -239,7 +239,7 @@ by the test suite.
   before the receiver answers `!1ECNQSTN`; once it answers, the real name is
   used.
 
-### Observed on hardware
+### Observed on real hardware (TX-RZ800 over PL2303)
 
 Measured on a development receiver while building the bridge, and the reason two
 design choices above are not optional:
