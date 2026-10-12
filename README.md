@@ -160,6 +160,8 @@ offers `50`, `80`, `100`, and `200`.
 HA finds the receiver through the bridge's UDP discovery responder, so
 auto-discovery should also work.
 
+For the TX-RZ800 **volume resolution** should be set to 100.
+
 ### Firewall
 
 HA must reach **both** TCP and UDP 60128. UDP is easy to overlook and its
